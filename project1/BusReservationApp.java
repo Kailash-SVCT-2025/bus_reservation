@@ -8,7 +8,7 @@ public class BusReservationApp {
 	        Scanner scanner = new Scanner(System.in);
 	        ReservationSystem reservationSystem = new ReservationSystem();
 
-	        // Adding buses directly to the database
+	       
 	        reservationSystem.addBus(new Bus("BUS001", 10));
 	        reservationSystem.addBus(new Bus("BUS002", 15));
 	        reservationSystem.addBus(new Bus("BUS003", 20));
@@ -70,7 +70,7 @@ public class BusReservationApp {
 
 	                System.out.print("Enter seat number to cancel: ");
 	                int seatNumber = scanner.nextInt();
-	                scanner.nextLine(); // Consume the newline
+	                scanner.nextLine();
 
 	                if (reservationSystem.cancelReservation(selectedBus, seatNumber)) {
 	                    System.out.println("Reservation for seat " + seatNumber + " canceled successfully.");
