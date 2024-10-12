@@ -7,7 +7,7 @@ public class ReservationSystem {
 
 
 	    private static final String URL = "jdbc:mysql://localhost:3306/project1";
-	    private static final String username = "root"; // MySQL username
+	    private static final String username = "root"; 
 	    private static final String password = "987654321"; 
 
 	    public void addBus(Bus bus) {
@@ -39,13 +39,13 @@ public class ReservationSystem {
 	    }
 
 	    public boolean reserveSeat(Bus bus, int seatNumber, passenger passenger) {
-	        // Insert passenger into the database
+	 
 	        String insertPassengerSQL = "INSERT INTO passengers(name, contact_info) VALUES(?, ?)";
 	        String insertReservationSQL = "INSERT INTO reservations(bus_id, seat_number, passenger_id) VALUES(?, ?, ?)";
 	        int busId = -1;
 	        int passengerId = -1;
 
-	        // Get bus ID
+	   
 	        String getBusIdSQL = "SELECT id FROM buses WHERE bus_number = ?";
 	        try (Connection conn = DriverManager.getConnection(URL, username, password);
 	             PreparedStatement pstmt = conn.prepareStatement(getBusIdSQL)) {
@@ -58,7 +58,7 @@ public class ReservationSystem {
 	            System.out.println(e.getMessage());
 	        }
 
-	        // Insert passenger
+	        
 	        try (Connection conn = DriverManager.getConnection(URL, username, password);
 	             PreparedStatement pstmt = conn.prepareStatement(insertPassengerSQL, Statement.RETURN_GENERATED_KEYS)) {
 	            pstmt.setString(1, passenger.getName());
@@ -71,10 +71,9 @@ public class ReservationSystem {
 	            }
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
-	            return false; // Failed to reserve
-	        }
+	            return false; 
 
-	        // Reserve the seat
+	        
 	        try (Connection conn = DriverManager.getConnection(URL, username, password);
 	             PreparedStatement pstmt = conn.prepareStatement(insertReservationSQL)) {
 	            pstmt.setInt(1, busId);
@@ -84,7 +83,7 @@ public class ReservationSystem {
 	            return true;
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
-	            return false; // Failed to reserve
+	            return false; 
 	        }
 	    }
 
@@ -98,7 +97,7 @@ public class ReservationSystem {
 	            return rowsAffected > 0; // Return true if a row was deleted
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
-	            return false; // Cancellation failed
+	            return false;
 	        }
 	    
 	    }}
